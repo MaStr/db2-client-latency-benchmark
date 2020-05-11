@@ -1,0 +1,8 @@
+*.o
+*.so
+tbsel
+*.log
+*.csv
+tbsel.c
+utilemb.c
+*bnd
