@@ -22,8 +22,7 @@ EXTRA_C_FLAGS=-m64 -fpic
 LIB=lib64
 SHARED_LIB_FLAG=-shared
 
-DB2_INCLUDE_PATH=$(DB2PATH)/include/
-
+DB2_INCLUDE_PATH=$(DB2PATH)/include
 
 LINK_FLAGS=$(EXTRA_C_FLAGS)
 SHARED_LINK_FLAGS=$(EXTRA_C_FLAGS) $(SHARED_LIB_FLAG)
@@ -42,14 +41,39 @@ ifeq ($(DO_CONNECT),yes)
 endif
  
 # Generate Object
+
 %.o: %.c 
-	$(CC) $(EXTRA_C_FLAGS) -I$(DB2_INCLUDE_PATH) -c $< -o $@  -D_REENTRANT
+	#$(CC) $(EXTRA_C_FLAGS) -I$(DB2_INCLUDE_PATH) -c $< -o $@  -D_REENTRANT
+	$(CC) $(EXTRA_C_FLAGS) -I$(DB2_INCLUDE_PATH) -I"./" -c $<  -D_REENTRANT
 
 %.so: utilemb.o utilapi.o
 	$(CC) $(SHARED_LINK_FLAGS) -o $@ $< $(EXTRA_LFLAG) -L$(DB2PATH)/$(LIB) -ldb2 -lpthread
 
 tbsel: tbsel.o libutilemb.so libutilapi.so
-	$(CC) $(LINK_FLAGS) -o $@ $^ $(EXTRA_LFLAG) -L "./"  -L$(DB2PATH)/$(LIB) -ldb2 -lpthread  -lutilemb -lutilapi
+	$(CC) $(LINK_FLAGS) -o $@ $@.o $(EXTRA_LFLAG) -L"./"  -L$(DB2PATH)/$(LIB) -ldb2 -lpthread  -lutilemb -lutilapi
+
+db2_bind: tbsel.c.bnd utilemb.c.bnd
+ifeq ($(DO_CONNECT),yes)
+	db2 connect to $(DB) $(DB2_CONNECT_CREDENTIALS)
+endif
+	db2 bind tbsel.c.bnd   ACTION replace COLLECTION $(SCHEMA)	
+	db2 bind utilemb.c.bnd ACTION replace COLLECTION $(SCHEMA)	
+ifeq ($(DO_CONNECT),yes)
+	db2 connect reset
+	db2 terminate
+endif
+
+
+db2_grant: tbsel.c.bnd utilemb.c.bnd
+ifeq ($(DO_CONNECT),yes)
+	db2 connect to $(DB) $(DB2_CONNECT_CREDENTIALS)
+endif
+	db2 grant execute on package $(SCHEMA).UTILEMB to PUBLIC
+	db2 grant execute on package $(SCHEMA).TBSEL to PUBLIC
+ifeq ($(DO_CONNECT),yes)
+	db2 connect reset
+	db2 terminate
+endif
 
 
 .PHONY: all
