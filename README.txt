@@ -58,7 +58,7 @@ With User and password:
   
  # optional 
   export DB2USER=xxx 
-  export= DB2PWD=xxx
+  export DB2PWD=xxx
 
 source ~db2inst1/sqllib/db2profile
 ./run_test.sh  $cycles $id
