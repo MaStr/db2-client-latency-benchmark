@@ -53,10 +53,12 @@ With User and password:
 
 - To create multiple runs, you can run
 
-  export DB2DB=DB1 ;export DB2SCHEMA=APPL1 
+  export DB2DB=DB1 
+  export DB2SCHEMA=APPL1 
   
  # optional 
-  export DB2USER=xxx ; export= DB2PWD=xxx
+  export DB2USER=xxx 
+  export= DB2PWD=xxx
 
 source ~db2inst1/sqllib/db2profile
 ./run_test.sh  $cycles $id
