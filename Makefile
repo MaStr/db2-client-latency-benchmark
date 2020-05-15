@@ -10,7 +10,7 @@ DO_CONNECT:=yes
 
 DB2_CONNECT_CREDENTIALS:=
 ifneq ($(USERID),)
-    DB2_CONNECT_CREDENTIALS="$(USERID) using $(PSSWD)"
+    DB2_CONNECT_CREDENTIALS=USER "$(USERID)" USING "$(PSSWD)"
 endif
 
 CURR_DIR=$(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
@@ -92,5 +92,4 @@ bind:
 	#utilemb
 	#tbsel
 
-all: utilemb utilapi tbsel
 
