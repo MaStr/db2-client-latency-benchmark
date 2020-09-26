@@ -1,0 +1,9 @@
+ runtime in s; min time per 1000 in s; max time per 1000 in s; average per 1000 in s;cpu_migrations;amount of peak; average distance between peaks
+
+CSV-stat-per-1000;9,318;0,00803;0,03584;0,00932;4;42;0,191;
+CSV-stat-per-1000;9,338;0,00819;0,03197;0,00934;924;46;0,175;
+CSV-stat-per-1000;9,912;0,00798;0,13751;0,00991;742;71;0,115;
+CSV-stat-per-1000;9,360;0,00804;0,09222;0,00936;983;33;0,250;
+CSV-stat-per-1000;9,471;0,00798;0,03968;0,00947;39;35;0,249;
+CSV-stat-per-1000;9,415;0,00804;0,02561;0,00941;128;41;0,152;
+

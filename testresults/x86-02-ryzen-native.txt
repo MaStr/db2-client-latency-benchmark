@@ -1,0 +1,9 @@
+Unfortunately, I'm missing the exact results.
+
+Machine:  AMD Ryzen 9 3900X 12-Core Processor @ 3,8 GHz 
+          Native
+OS: SLES12SP5
+
+Connection type: shared memory
+
+Average time for 1.000 db2 single selects: 0,00986s

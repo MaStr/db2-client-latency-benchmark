@@ -1,0 +1,9 @@
+Unfortunately, I'm missing the exact results.
+
+Machine: Xeon Gold 6230 @ 2.1ghz (8 core)
+         Running under VMWare 
+OS: SLES12SP5
+
+Connection type: shared memory
+
+Average time for 1.000 db2 single selects: 0.02409s 
