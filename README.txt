@@ -9,7 +9,7 @@ source ~db2inst1/sqllib/db2profile
 
 Examples for build:
 
-1. Do connect within MAKE with user and password 
+1. Do connect within MAKE with user and password
     make all DB2PATH=$IBM_DB_HOME DB=DB1 SCHEMA=APPL1 USER=xx PSSWD=xy
 
 2. Do connect without user and passwd
@@ -38,7 +38,7 @@ Additional GRANTS might be needed.
 
 These examples are available under
 
-    make db2_grant DB2PATH=$IBM_DB_HOME DB=DB1 SCHEMA=APPL1  .. 
+    make db2_grant DB2PATH=$IBM_DB_HOME DB=DB1 SCHEMA=APPL1  ..
 
 -----------
 Run Test
@@ -53,18 +53,18 @@ With User and password:
 
 - To create multiple runs, you can run
 
-  export DB2DB=DB1 
-  export DB2SCHEMA=APPL1 
-  
- # optional 
-  export DB2USER=xxx 
+  export DB2DB=DB1
+  export DB2SCHEMA=APPL1
+
+ # optional
+  export DB2USER=xxx
   export DB2PWD=xxx
 
 source ~db2inst1/sqllib/db2profile
 ./run_test.sh  $cycles $id
 
  cycles = Amount of rounds
- id     = TestCaseID 
+ id     = TestCaseID
 
 Results in
 $id.cv, like this:
@@ -79,4 +79,4 @@ CSV-stat-per-1000;7,585;0,00706;0,00971;0,00758;0;0;;
 CSV columns:
 runtime in s; min time per 1000 in s; max time per 1000 in s; average per 1000 in s;cpu_migrations;amount of peak; average distance between peaks
 
-  
+
