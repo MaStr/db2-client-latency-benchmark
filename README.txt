@@ -1,6 +1,18 @@
-Stand alone Singe SELECT Performance tool.
+Stand alone single SELECT benchmark tool.
 
-Helps to understand how DB2 client is interacting with the server, get an idea of the impact of scheduling or other kernel parameters.
+Helps to understand how DB2 client is interacting with the server, get an idea of the impact of scheduling or other kernel parameters. The tool is doing a 1.000.000 SELECTs against IBM's SYSDUMMY table. The select result is not affected by bufferpool configuration or I/O bottlenecks (reading a page). The result is a "pure" client->DB2->client round trip.
+Every 1.000 request the time spend for that amount of requests is accounted. After all requests are done, you'll receive a CSV line with:
+
+
+- runtime in s = complete runtime of the tool
+- min time per 1000 selects in s
+- max time per 1000 selects in s
+- average per 1000 in s
+- cpu_migrations discovered
+- amount of peaks
+- average distance between peak
+
+If 1000 selects needs the double time of the current average, a "peak" will be accounted. This can be handy to understand scheduling issues, or identify strange hiccups.
 
 How to build
 ------------
